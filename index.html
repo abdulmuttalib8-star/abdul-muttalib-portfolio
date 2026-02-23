@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Muttalib | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS / Styling Section */
+        :root {
+            --primary-color: #00e5ff;
+            --bg-color: #0a192f;
+            --text-main: #ccd6f6;
+            --text-secondary: #8892b0;
+            --card-bg: #112240;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Background Design */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, #112240, transparent 40%),
+                        radial-gradient(circle at bottom left, #112240, transparent 40%);
+            z-index: -1;
+        }
+
+        header {
+            padding: 100px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 { font-size: 4rem; color: var(--text-main); }
+        h1 span { color: var(--primary-color); }
+        h2 { font-size: 2rem; color: var(--text-secondary); margin-bottom: 20px; }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        section {
+            padding: 80px 10%;
+        }
+
+        /* About & Education */
+        .content-box {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        .content-box:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Skills Animation */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .skill-tag {
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        .skill-tag.show {
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes popIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 3px solid var(--primary-color);
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: rgba(0, 229, 255, 0.1);
+        }
+
+        /* Modal for Project Files */
+        .modal {
+            display: none; position: fixed; z-index: 100;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(10, 25, 47, 0.9);
+            justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 30px; border-radius: 10px;
+            width: 80%; max-width: 600px;
+            color: var(--text-secondary);
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        .close-btn { color: #fff; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+
+        /* Hobbies */
+        .hobby-list { list-style: none; }
+        .hobby-list li { margin-bottom: 15px; font-size: 1.1rem; }
+        .hobby-highlight { color: var(--primary-color); font-weight: 600; }
+
+        /* Contact & Social Links */
+        .contact-info p { margin-bottom: 10px; font-size: 1.1rem; }
+        .social-links { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 15px; }
+        .social-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border-radius: 5px;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: var(--bg-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header id="home">
+        <h2>Hi, my name is</h2>
+        <h1><span>Abdul</span> Muttalib.</h1>
+        <h2>I am a BCA Student.</h2>
+        <div class="content-box" style="margin-top: 30px;">
+            <h3>About Me</h3>
+            <p style="margin-top: 10px;">I am deeply passionate about Software Development, Web Development, and Web Designing. As a BCA student, I have a strong enthusiasm for learning various programming languages and modern technologies to build attractive and impactful digital solutions.</p>
+        </div>
+    </header>
+
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="content-box">
+            <h3 style="color: var(--primary-color); font-size: 1.5rem;">Bachelor of Computer Applications (BCA)</h3>
+            <p style="margin-top: 10px; font-size: 1.1rem;"><strong>College:</strong> Islamia Degree College Deoband, Saharanpur</p>
+            <p style="font-size: 1.1rem;"><strong>Affiliated University:</strong> Maa Shakumbhari University, Saharanpur</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">My Skills</h2>
+        <div class="skills-container" id="skills-container">
+            <div class="skill-tag">C Programming</div>
+            <div class="skill-tag">C++</div>
+            <div class="skill-tag">Java</div>
+            <div class="skill-tag">Python</div>
+            <div class="skill-tag">HTML5 & CSS3</div>
+            <div class="skill-tag">JavaScript</div>
+            <div class="skill-tag">Web Designing</div>
+            <div class="skill-tag">Software Development</div>
+            <div class="skill-tag">Data Structures</div>
+            <div class="skill-tag">Database Management (SQL)</div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>1. Student Management System</h3>
+                <p>A console-based application built in C++ to manage student records, grades, and details using file handling.</p>
+                <button class="btn" onclick="openModal('Code Snippet: \n\n#include <iostream>\nusing namespace std;\n\nclass Student {\n public:\n string name;\n int rollNo;\n void display() { cout << name << rollNo; }\n};\n\n// Basic Structure defined for BCA practicals')">View Project File</button>
+            </div>
+            <div class="project-card">
+                <h3>2. Digital Logic Gate Simulator</h3>
+                <p>A web-based interface demonstrating SR Flip-Flops and De Morgan's theorem using HTML, CSS, and basic logic.</p>
+                <button class="btn" onclick="openModal('Code Snippet: \n\n\n<div class=\'circuit\'>\n <p>S Input: 1</p>\n <p>R Input: 0</p>\n <p>Output (Q): 1</p>\n</div>\n// Logic implemented for digital electronics practical')">View Project File</button>
+            </div>
+            <div class="project-card">
+                <h3>3. Personal Portfolio Website</h3>
+                <p>A fully responsive and interactive portfolio website (the one you are currently viewing) to showcase my skills.</p>
+                <button class="btn" onclick="openModal('Code Snippet: \n\nFiles included:\n- index.html\n- styles.css (embedded)\n- script.js (embedded)\n\nTech stack: HTML5, CSS3, JavaScript (Intersection Observer for animations).')">View Project File</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="hobbies">
+        <h2 class="section-title">Hobbies & Interests</h2>
+        <div class="content-box">
+            <ul class="hobby-list">
+                <li>🎮 <strong>Gaming:</strong> I love playing <span class="hobby-highlight">Free Fire MAX</span>. <br>
+                    Status: <span class="hobby-highlight">Pro Player</span> | In-Game Name: <span class="hobby-highlight">XENOGENIC</span> | UID: <span class="hobby-highlight">2393517589</span>
+                </li>
+                <hr style="border: 0; border-top: 1px solid #233554; margin: 15px 0;">
+                <li>🏏 <strong>Cricket:</strong> I am a <span class="hobby-highlight">Part-Time Cricket Lover</span>. <br>
+                    Favorite Team: <span class="hobby-highlight">Australia (Aussie)</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="content-box contact-info">
+            <p><strong>📍 Address:</strong> Khampur, Muzaffarnagar, Uttar Pradesh 251307</p>
+            <p><strong>📧 Email:</strong> <a href="mailto:abdulmuttalibgour008@gmail.com" style="color: var(--primary-color); text-decoration: none;">abdulmuttalibgour008@gmail.com</a></p>
+            
+            <div class="social-links">
+                <a href="https://www.instagram.com/abdul_muttalib.8?igsh=MXRmaWhvdGl2aWpnMQ==" target="_blank">Instagram</a>
+                <a href="https://www.facebook.com/profile.php?id=100055419063584" target="_blank">Facebook</a>
+                <a href="https://github.com/abdulmuttalib8-star" target="_blank">GitHub</a>
+                <a href="https://www.snapchat.com/add/abdul_muttalib8?share_id=cMmw1fcFb_4&locale=en-IN" target="_blank">Snapchat</a>
+                <a href="http://www.linkedin.com/in/abdul-muttalib-1612b9381" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 style="color: var(--primary-color); margin-bottom: 15px;">Project Source Code / File</h3>
+            <div id="modalText"></div>
+        </div>
+    </div>
+
+    <script>
+        // Animation Logic for Skills (Staggered Effect)
+        document.addEventListener("DOMContentLoaded", () => {
+            const skills = document.querySelectorAll(".skill-tag");
+            
+            // Add staggered animation delays
+            skills.forEach((skill, index) => {
+                skill.style.animationDelay = `${index * 0.15}s`; 
+            });
+
+            // Intersection Observer to trigger animation when scrolled into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            skills.forEach(skill => {
+                observer.observe(skill);
+            });
+        });
+
+        // Modal Logic for Projects
+        const modal = document.getElementById("projectModal");
+        const modalText = document.getElementById("modalText");
+
+        function openModal(text) {
+            modalText.innerText = text;
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close modal if clicked outside the box
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
