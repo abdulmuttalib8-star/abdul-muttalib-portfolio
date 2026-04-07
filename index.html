@@ -6,24 +6,24 @@
     <title>Abdul Muttalib | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #d8b4fe; /* Glowing Lilac */
+            --primary: #d8b4fe;
             --primary-dim: rgba(216, 180, 254, 0.2);
-            --bg: #03050a; /* Deep Space Black */
+            --bg: #03050a;
             --glass: rgba(255, 255, 255, 0.02);
             --glass-border: rgba(255, 255, 255, 0.05);
             --text-main: #f9fafb;
             --text-sec: #9ca3af;
-            --font-head: 'Syne', sans-serif;
-            --font-body: 'Plus Jakarta Sans', sans-serif;
+            /* Applying Textile font with aesthetic fallbacks */
+            --font-main: 'Textile', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; cursor: none; }
-        body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-body); overflow-x: hidden; padding-top: 80px; letter-spacing: 0.3px; }
-        h1, h2, h3, .logo-text, .nav-links a, .section-title, .btn { font-family: var(--font-head); }
+        body { background-color: var(--bg); color: var(--text-main); font-family: var(--font-main); overflow-x: hidden; padding-top: 80px; letter-spacing: 0.3px; }
+        h1, h2, h3, .logo-text, .nav-links a, .section-title, .btn { font-family: var(--font-main); }
 
         /* Custom Cursor Trail */
         #custom-cursor { position: fixed; width: 10px; height: 10px; background: var(--primary); border-radius: 50%; pointer-events: none; z-index: 100000; transition: transform 0.1s; transform: translate(-50%, -50%); box-shadow: 0 0 20px var(--primary); }
@@ -31,7 +31,7 @@
 
         /* Enhanced Aesthetic Preloader */
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); display: flex; justify-content: center; align-items: center; z-index: 1000000; transition: opacity 1s var(--ease-out), visibility 1s; }
-        .loader-logo { font-size: 4rem; font-weight: 800; color: transparent; -webkit-text-stroke: 1.5px var(--primary); animation: pulseGlow 2s infinite var(--ease-out); font-family: var(--font-head); position: relative; }
+        .loader-logo { font-size: clamp(3rem, 8vw, 4rem); font-weight: 800; color: transparent; -webkit-text-stroke: 1.5px var(--primary); animation: pulseGlow 2s infinite var(--ease-out); position: relative; }
         .loader-logo::after { content: 'AM'; position: absolute; left: 0; top: 0; color: var(--primary); filter: blur(15px); opacity: 0.6; z-index: -1; }
         @keyframes pulseGlow { 0%, 100% { transform: scale(0.95); opacity: 0.7; } 50% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 30px var(--primary); } }
 
@@ -39,22 +39,22 @@
         #bg-aura { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle at 15% 30%, rgba(216, 180, 254, 0.06) 0%, transparent 40%), radial-gradient(circle at 85% 70%, rgba(253, 164, 175, 0.04) 0%, transparent 40%); z-index: -2; filter: blur(70px); animation: auraMove 20s ease-in-out infinite alternate; }
         @keyframes auraMove { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
 
-        /* Exit Popup & Modal */
-        .aesthetic-popup, .modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(3, 5, 10, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 99999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.6s var(--ease-out); }
+        /* Exit Popup & Modal (Perfect Mobile Scaling) */
+        .aesthetic-popup, .modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(3, 5, 10, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 99999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.6s var(--ease-out); padding: 20px; }
         .aesthetic-popup.active, .modal.active { opacity: 1; visibility: visible; }
-        .popup-glass, .modal-content { background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(216, 180, 254, 0.2); padding: 50px; border-radius: 30px; text-align: center; transform: translateY(30px) scale(0.95); transition: 0.7s var(--ease-out); max-width: 90%; width: 450px; box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.02); }
-        .modal-content { width: 600px; text-align: left; background: #050505; color: #a5b4fc; font-family: 'Consolas', monospace; white-space: pre-wrap; overflow-x: auto; }
+        .popup-glass, .modal-content { background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(216, 180, 254, 0.2); padding: clamp(30px, 5vw, 50px); border-radius: 25px; text-align: center; transform: translateY(30px) scale(0.95); transition: 0.7s var(--ease-out); width: 100%; max-width: 450px; box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.02); }
+        .modal-content { max-width: 600px; text-align: left; background: #050505; color: #a5b4fc; font-family: 'Consolas', monospace; white-space: pre-wrap; overflow-x: auto; }
         .aesthetic-popup.active .popup-glass, .modal.active .modal-content { transform: translateY(0) scale(1); }
-        .popup-glass h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; line-height: 1.2; letter-spacing: -1px;}
+        .popup-glass h2 { font-size: clamp(2rem, 6vw, 2.5rem); font-weight: 800; margin-bottom: 15px; line-height: 1.2; letter-spacing: -0.5px;}
         .popup-glass h2 span { color: var(--primary); }
         .close-btn { color: var(--text-sec); float: right; font-size: 30px; line-height: 1; transition: 0.3s; padding: 5px;}
         .close-btn:hover { color: var(--primary); transform: rotate(90deg); }
 
         /* Ultra Premium Navbar */
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(3, 5, 10, 0.7); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid rgba(255,255,255,0.03); padding: 20px 10%; display: flex; justify-content: space-between; align-items: center; z-index: 10000; transition: 0.4s; }
-        .logo-text { font-size: 2.2rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: -1.5px; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(3, 5, 10, 0.7); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid rgba(255,255,255,0.03); padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; z-index: 10000; transition: 0.4s; }
+        .logo-text { font-size: 2rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: -1px; }
         .logo-text span { color: var(--primary); }
-        .nav-links { list-style: none; display: flex; gap: 35px; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
         .nav-links a { color: var(--text-main); text-decoration: none; font-size: 1.05rem; font-weight: 500; transition: 0.3s; position: relative; }
         .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; transform: translateX(-50%); background-color: var(--primary); transition: width 0.3s ease; }
         .nav-links a:hover { color: var(--primary); }
@@ -63,32 +63,33 @@
         .hamburger .bar { width: 25px; height: 2px; background-color: var(--text-main); margin: 6px 0; border-radius: 5px; transition: 0.3s; }
 
         /* Header & Fix for Typing Animation */
-        header { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; position: relative; }
-        h2.intro-text { font-size: 1.5rem; color: var(--text-sec); font-weight: 500; margin-bottom: 5px; font-family: var(--font-body); letter-spacing: 1px;}
-        h1 { font-size: 5.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 10px; letter-spacing: -2px; }
+        header { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; }
+        h2.intro-text { font-size: clamp(1.2rem, 4vw, 1.5rem); color: var(--text-sec); font-weight: 500; margin-bottom: 5px; letter-spacing: 0.5px;}
+        h1 { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 10px; letter-spacing: -1.5px; }
         h1 span { color: var(--primary); }
         
-        /* The Fixed Typing Container */
+        /* The Fixed Typing Container (Responsive) */
         .typing-container { 
-            font-size: 1.8rem; 
+            font-size: clamp(1.2rem, 5vw, 1.8rem); 
             color: var(--text-sec); 
             font-weight: 400; 
-            min-height: 60px; /* Fixed mobile cutoff */
+            min-height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-wrap: wrap; 
         }
         .typed-text { color: var(--primary); font-weight: 600; margin-left: 8px;}
-        .cursor { display: inline-block; width: 3px; height: 1.5rem; background-color: var(--primary); margin-left: 5px; animation: blink 0.8s infinite; transform: translateY(3px); }
+        .cursor { display: inline-block; width: 3px; height: 1.2em; background-color: var(--primary); margin-left: 5px; animation: blink 0.8s infinite; transform: translateY(2px); }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         /* Morphing & Floating Profile Picture */
         .profile-pic { 
-            width: 190px; height: 190px; 
+            width: clamp(150px, 35vw, 190px); 
+            height: clamp(150px, 35vw, 190px); 
             object-fit: cover; 
             border: 3px solid rgba(216, 180, 254, 0.4); 
-            margin-bottom: 25px; 
+            margin-bottom: 20px; 
             box-shadow: 0 0 30px rgba(216, 180, 254, 0.15); 
             animation: liquidFloat 8s ease-in-out infinite; 
             transition: 0.4s;
@@ -101,65 +102,66 @@
             100% { transform: translateY(0); border-radius: 50%; } 
         }
 
-        /* Glass Content Boxes */
-        section { padding: 100px 10%; }
-        .section-title { font-size: 3.5rem; text-align: center; margin-bottom: 60px; font-weight: 800; letter-spacing: -1.5px; }
+        /* Glass Content Boxes (Responsive Padding) */
+        section { padding: 80px 8%; }
+        .section-title { font-size: clamp(2.5rem, 6vw, 3.5rem); text-align: center; margin-bottom: 50px; font-weight: 800; letter-spacing: -1px; }
         .section-title::after { content: ''; display: block; width: 80px; height: 4px; background: linear-gradient(90deg, var(--primary), transparent); margin: 15px auto; border-radius: 2px; }
         
         .content-box { 
             background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); 
             border: 1px solid rgba(255,255,255,0.05); 
-            padding: 40px; border-radius: 24px; margin-bottom: 30px; 
+            padding: clamp(25px, 5vw, 40px); 
+            border-radius: 24px; margin-bottom: 30px; 
             transition: all 0.5s var(--ease-out); 
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             position: relative; overflow: hidden;
         }
         .content-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top left, rgba(216,180,254,0.1), transparent 70%); opacity: 0; transition: 0.5s; }
-        .content-box:hover { transform: translateY(-10px); border-color: rgba(216, 180, 254, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .content-box:hover { transform: translateY(-8px); border-color: rgba(216, 180, 254, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         .content-box:hover::before { opacity: 1; }
         
-        .content-box h3 { color: var(--primary); font-size: 1.8rem; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.5px;}
-        .content-box p { color: var(--text-sec); font-size: 1.1rem; margin-bottom: 10px; font-weight: 400; line-height: 1.8;}
+        .content-box h3 { color: var(--primary); font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 12px; font-weight: 700; letter-spacing: -0.5px;}
+        .content-box p { color: var(--text-sec); font-size: 1.05rem; margin-bottom: 10px; font-weight: 400; line-height: 1.7;}
         
         /* Ultra Reveal Animation (Blur + Slide) */
-        .reveal { opacity: 0; transform: translateY(50px) scale(0.95); filter: blur(10px); transition: all 1s var(--ease-out); }
+        .reveal { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(8px); transition: all 0.8s var(--ease-out); }
         .reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 
         /* Aesthetic Buttons & Tags */
-        .btn { padding: 14px 30px; border: 1px solid rgba(216, 180, 254, 0.5); color: var(--primary); border-radius: 50px; text-decoration: none; font-weight: 600; font-family: var(--font-body); transition: all 0.4s var(--ease-out); background: transparent; display: inline-block; margin-top: 20px; letter-spacing: 0.5px;}
-        .btn:hover { background: var(--primary); color: var(--bg); box-shadow: 0 10px 25px rgba(216, 180, 254, 0.3); transform: translateY(-3px); }
+        .btn { padding: 12px 28px; border: 1px solid rgba(216, 180, 254, 0.5); color: var(--primary); border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.4s var(--ease-out); background: transparent; display: inline-block; margin-top: 20px; letter-spacing: 0.5px;}
+        .btn:hover { background: var(--primary); color: var(--bg); box-shadow: 0 8px 20px rgba(216, 180, 254, 0.3); transform: translateY(-3px); }
         
-        .skill-tag { background: rgba(216, 180, 254, 0.03); border: 1px solid rgba(216, 180, 254, 0.15); padding: 12px 24px; border-radius: 50px; margin: 8px; display: inline-block; transition: all 0.4s var(--ease-out); opacity: 0; transform: translateY(20px); font-family: var(--font-body); font-weight: 500;}
+        .skill-tag { background: rgba(216, 180, 254, 0.03); border: 1px solid rgba(216, 180, 254, 0.15); padding: 10px 20px; border-radius: 50px; margin: 6px; display: inline-block; transition: all 0.4s var(--ease-out); opacity: 0; transform: translateY(20px); font-weight: 500;}
         .skill-tag.show { opacity: 1; transform: translateY(0); }
-        .skill-tag:hover { border-color: var(--primary); background: rgba(216, 180, 254, 0.1); transform: translateY(-5px) scale(1.05); box-shadow: 0 5px 15px rgba(216, 180, 254, 0.2); color: #fff;}
+        .skill-tag:hover { border-color: var(--primary); background: rgba(216, 180, 254, 0.1); transform: translateY(-3px) scale(1.05); box-shadow: 0 5px 15px rgba(216, 180, 254, 0.2); color: #fff;}
 
         /* Project Grid */
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
 
         /* Footer & Scroll Top */
-        .footer-copyright { padding: 40px 10%; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-sec); font-size: 1rem; font-family: var(--font-body);}
+        .footer-copyright { padding: 30px 5%; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-sec); font-size: 0.95rem; }
         .footer-copyright span { color: var(--primary); font-weight: 600; }
-        #scroll-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: rgba(216, 180, 254, 0.1); border: 1px solid var(--primary); color: var(--primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; font-size: 1.2rem; visibility: hidden; opacity: 0; transition: 0.4s; z-index: 9999; text-decoration: none; backdrop-filter: blur(5px);}
+        #scroll-top { position: fixed; bottom: 20px; right: 20px; width: 45px; height: 45px; background: rgba(216, 180, 254, 0.1); border: 1px solid var(--primary); color: var(--primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; font-size: 1.2rem; visibility: hidden; opacity: 0; transition: 0.4s; z-index: 9999; text-decoration: none; backdrop-filter: blur(5px);}
         #scroll-top:hover { background: var(--primary); color: var(--bg); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(216, 180, 254, 0.3);}
         #scroll-top.visible { visibility: visible; opacity: 1; }
 
         /* Social Links */
-        .social-links { display: flex; gap: 15px; justify-content: center; margin-top: 35px; flex-wrap: wrap; }
-        .social-links a { padding: 14px 28px; border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; color: #fff; text-decoration: none; transition: 0.4s var(--ease-out); backdrop-filter: blur(5px); font-family: var(--font-body); font-weight: 500;}
-        .social-links a:hover { background: var(--primary); color: var(--bg); border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(216, 180, 254, 0.3);}
+        .social-links { display: flex; gap: 12px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+        .social-links a { padding: 12px 24px; border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; color: #fff; text-decoration: none; transition: 0.4s var(--ease-out); backdrop-filter: blur(5px); font-weight: 500; font-size: 0.95rem;}
+        .social-links a:hover { background: var(--primary); color: var(--bg); border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 8px 15px rgba(216, 180, 254, 0.3);}
 
         .hobby-highlight { color: var(--primary); font-weight: 600; }
         strong { font-weight: 600; color: #e5e7eb; }
 
-        /* Mobile Fixes */
+        /* Mobile Fixes (Ensuring 100% perfect fit) */
         @media (max-width: 768px) {
-            h1 { font-size: 3.2rem; letter-spacing: -1px;}
-            .typing-container { font-size: 1.3rem; min-height: 50px; }
-            .section-title { font-size: 2.5rem; }
-            .nav-links { position: absolute; top: 75px; right: -100%; flex-direction: column; background: rgba(3, 5, 10, 0.98); backdrop-filter: blur(25px); border-left: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); width: 260px; text-align: center; padding: 40px 0; transition: 0.5s var(--ease-out); border-bottom-left-radius: 24px; }
+            .navbar { padding: 15px 5%; }
+            .nav-links { position: absolute; top: 70px; right: -100%; flex-direction: column; background: rgba(3, 5, 10, 0.98); backdrop-filter: blur(25px); border-left: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); width: 260px; text-align: center; padding: 40px 0; transition: 0.5s var(--ease-out); border-bottom-left-radius: 24px; }
             .nav-links.active { right: 0; box-shadow: -10px 10px 30px rgba(0,0,0,0.5); }
             .nav-links li { margin: 20px 0; }
             .hamburger { display: block; }
+            section { padding: 60px 5%; }
+            /* Hide custom cursor on mobile for perfect touch experience */
             * { cursor: auto; }
             #custom-cursor, #custom-cursor-blur { display: none; }
         }
@@ -176,9 +178,9 @@
 
     <div id="exitPopup" class="aesthetic-popup">
         <div class="popup-glass">
-            <h2>👋 Thanks For <br><span>Visiting!</span></h2>
+            <h2>👋 Thanks for <br><span>visiting!</span></h2>
             <p style="color: var(--text-sec); margin-bottom: 25px;">Hope you liked my aesthetic portfolio.</p>
-            <button class="btn" style="margin-top: 0;" onclick="closeExitPopup()">Close Window</button>
+            <button class="btn" style="margin-top: 0;" onclick="closeExitPopup()">Close window</button>
         </div>
     </div>
 
@@ -199,13 +201,13 @@
 
     <header id="home">
         <img src="129.webp" alt="Abdul Muttalib" class="profile-pic">
-        <h2 class="intro-text">Hi, My Name Is</h2>
+        <h2 class="intro-text">Hi, my name is</h2>
         <h1><span>Abdul</span> Muttalib.</h1>
         
-        <div class="typing-container">I Am A <span class="typed-text"></span><span class="cursor"></span></div>
+        <div class="typing-container">I am a <span class="typed-text"></span><span class="cursor"></span></div>
         
-        <div class="content-box" style="margin-top: 50px; max-width: 850px; background: rgba(255,255,255,0.01); border: none; box-shadow: none;">
-            <p style="text-align: center; color: var(--text-sec); font-size: 1.15rem;">I Am Deeply Passionate About Software Development, Web Development, And Web Designing. As A BCA Student, I Have A Strong Enthusiasm For Learning Various Programming Languages And Modern Technologies To Build Attractive And Impactful Digital Solutions.</p>
+        <div class="content-box reveal" style="margin-top: 40px; max-width: 850px; background: rgba(255,255,255,0.01); border: none; box-shadow: none;">
+            <p style="text-align: center; color: var(--text-sec); font-size: 1.1rem;">I am deeply passionate about software development, web development, and web designing. As a BCA student, I have a strong enthusiasm for learning various programming languages and modern technologies to build attractive and impactful digital solutions.</p>
         </div>
     </header>
 
@@ -213,7 +215,7 @@
         <h2 class="section-title reveal">Education</h2>
         
         <div class="content-box reveal">
-            <h3>Bachelor Of Computer Applications (BCA)</h3>
+            <h3>Bachelor of Computer Applications (BCA)</h3>
             <p><strong>College:</strong> Islamia Degree College Deoband, Saharanpur</p>
             <p><strong>Affiliated University:</strong> Maa Shakumbhari University, Saharanpur</p>
         </div>
@@ -223,7 +225,7 @@
             <p><strong>School:</strong> Unique Inter College</p>
             <p><strong>Location:</strong> Khampur, Muzaffarnagar, Uttar Pradesh 251307</p>
             <p><strong>Board:</strong> U.P. Board</p>
-            <p><strong>Passing Year:</strong> 2025 &nbsp;|&nbsp; <strong style="color: var(--primary);">Percentage: 58.2%</strong></p>
+            <p><strong>Passing year:</strong> 2025 &nbsp;|&nbsp; <strong style="color: var(--primary);">Percentage: 58.2%</strong></p>
         </div>
 
         <div class="content-box reveal">
@@ -231,12 +233,12 @@
             <p><strong>School:</strong> Unique Inter College</p>
             <p><strong>Location:</strong> Khampur, Muzaffarnagar, Uttar Pradesh 251307</p>
             <p><strong>Board:</strong> U.P. Board</p>
-            <p><strong>Passing Year:</strong> 2023 &nbsp;|&nbsp; <strong style="color: var(--primary);">Percentage: 72.5%</strong></p>
+            <p><strong>Passing year:</strong> 2023 &nbsp;|&nbsp; <strong style="color: var(--primary);">Percentage: 72.5%</strong></p>
         </div>
     </section>
 
     <section id="skills">
-        <h2 class="section-title reveal">Technical Skills</h2>
+        <h2 class="section-title reveal">Technical skills</h2>
         <div style="text-align: center; max-width: 900px; margin: 0 auto;">
             <div class="skill-tag">C Programming</div><div class="skill-tag">C++</div><div class="skill-tag">Java</div>
             <div class="skill-tag">Python</div><div class="skill-tag">HTML5 & CSS3</div><div class="skill-tag">JavaScript</div>
@@ -248,43 +250,43 @@
         <h2 class="section-title reveal">Projects</h2>
         <div class="project-grid">
             <div class="content-box reveal">
-                <h3>1. Student Management System</h3>
-                <p>A Console-Based Application Built In C++ To Manage Student Records, Grades, And Details Using File Handling.</p>
-                <button class="btn" onclick="openModal('Code Snippet: \n\n#include <iostream>\nusing namespace std;\n\nclass Student {\n  public:\n  string name;\n  int rollNo;\n  void display() { cout << name << rollNo; }\n};\n\n// Basic Structure defined for BCA practicals')">View Project File</button>
+                <h3>1. Student management system</h3>
+                <p>A console-based application built in C++ to manage student records, grades, and details using file handling.</p>
+                <button class="btn" onclick="openModal('Code Snippet: \n\n#include <iostream>\nusing namespace std;\n\nclass Student {\n  public:\n  string name;\n  int rollNo;\n  void display() { cout << name << rollNo; }\n};\n\n// Basic Structure defined for BCA practicals')">View project file</button>
             </div>
             <div class="content-box reveal">
-                <h3>2. Digital Logic Gate Simulator</h3>
-                <p>A Web-Based Interface Demonstrating SR Flip-Flops And De Morgan\'s Theorem Using HTML, CSS, And Basic Logic.</p>
-                <button class="btn" onclick="openModal('Code Snippet: \n\n\n<div class=\'circuit\'>\n  <p>S Input: 1</p>\n  <p>R Input: 0</p>\n  <p>Output (Q): 1</p>\n</div>\n// Logic implemented for digital electronics practical')">View Project File</button>
+                <h3>2. Digital logic gate simulator</h3>
+                <p>A web-based interface demonstrating SR flip-flops and De Morgan\'s theorem using HTML, CSS, and basic logic.</p>
+                <button class="btn" onclick="openModal('Code Snippet: \n\n\n<div class=\'circuit\'>\n  <p>S Input: 1</p>\n  <p>R Input: 0</p>\n  <p>Output (Q): 1</p>\n</div>\n// Logic implemented for digital electronics practical')">View project file</button>
             </div>
             <div class="content-box reveal">
-                <h3>3. Personal Portfolio Website</h3>
-                <p>A Fully Responsive And Interactive Portfolio Website (The One You Are Currently Viewing) To Showcase My Skills.</p>
-                <button class="btn" onclick="openModal('Code Snippet: \n\nFiles included:\n- index.html\n- styles.css (embedded)\n- script.js (embedded)\n\nTech stack: HTML5, CSS3, JavaScript (Intersection Observer for animations).')">View Project File</button>
+                <h3>3. Personal portfolio website</h3>
+                <p>A fully responsive and interactive portfolio website (the one you are currently viewing) to showcase my skills.</p>
+                <button class="btn" onclick="openModal('Code Snippet: \n\nFiles included:\n- index.html\n- styles.css (embedded)\n- script.js (embedded)\n\nTech stack: HTML5, CSS3, JavaScript (Intersection Observer for animations).')">View project file</button>
             </div>
         </div>
     </section>
 
     <section id="hobbies">
-        <h2 class="section-title reveal">Hobbies & Interests</h2>
+        <h2 class="section-title reveal">Hobbies & interests</h2>
         <div class="content-box reveal">
             <ul style="list-style: none;">
-                <li style="margin-bottom: 20px; font-size: 1.15rem; color: var(--text-sec);">🎮 <strong>Gaming:</strong> I Love Playing <span class="hobby-highlight">Free Fire MAX</span>. <br>
-                    Status: <span class="hobby-highlight">Pro Player</span> | In-Game Name: <span class="hobby-highlight">CR4ZY ABDUL</span> | UID: <span class="hobby-highlight">2393517589</span>
+                <li style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text-sec);">🎮 <strong>Gaming:</strong> I love playing <span class="hobby-highlight">Free Fire MAX</span>. <br>
+                    Status: <span class="hobby-highlight">Pro Player</span> | In-game name: <span class="hobby-highlight">CR4ZY ABDUL</span> | UID: <span class="hobby-highlight">2393517589</span>
                 </li>
                 <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 30px 0;">
-                <li style="margin-bottom: 20px; font-size: 1.15rem; color: var(--text-sec);">🏏 <strong>Cricket:</strong> I Am A <span class="hobby-highlight">Part-Time Cricket Lover</span>. <br>
-                    Favorite Team: <span class="hobby-highlight">Australia (Aussie)</span>
+                <li style="margin-bottom: 10px; font-size: 1.1rem; color: var(--text-sec);">🏏 <strong>Cricket:</strong> I am a <span class="hobby-highlight">part-time cricket lover</span>. <br>
+                    Favorite team: <span class="hobby-highlight">Australia (Aussie)</span>
                 </li>
             </ul>
         </div>
     </section>
 
     <section id="contact">
-        <h2 class="section-title reveal">Get In Touch</h2>
+        <h2 class="section-title reveal">Get in touch</h2>
         <div class="content-box reveal" style="text-align: center; max-width: 800px; margin: 0 auto;">
-            <p style="margin-bottom: 15px; font-size: 1.15rem; color: var(--text-sec);"><strong>📍 Address:</strong> Khampur, Muzaffarnagar, Uttar Pradesh 251307</p>
-            <p style="margin-bottom: 20px; font-size: 1.15rem; color: var(--text-sec);"><strong>📧 Email:</strong> <a href="mailto:abdulmuttalibgour008@gmail.com" style="color: var(--primary); text-decoration: none;">abdulmuttalibgour008@gmail.com</a></p>
+            <p style="margin-bottom: 15px; font-size: 1.1rem; color: var(--text-sec);"><strong>📍 Address:</strong> Khampur, Muzaffarnagar, Uttar Pradesh 251307</p>
+            <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text-sec);"><strong>📧 Email:</strong> <a href="mailto:abdulmuttalibgour008@gmail.com" style="color: var(--primary); text-decoration: none;">abdulmuttalibgour008@gmail.com</a></p>
             
             <div class="social-links">
                 <a href="https://www.instagram.com/abdul_muttalib.8?igsh=MXRmaWhvdGl2aWpnMQ==" target="_blank">Instagram</a>
@@ -299,13 +301,13 @@
     <div id="projectModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h3 style="color: var(--primary); margin-bottom: 20px; font-family: var(--font-head); letter-spacing: -0.5px;">Project Source Code / File</h3>
+            <h3 style="color: var(--primary); margin-bottom: 20px; font-family: var(--font-main); letter-spacing: -0.5px;">Project source code / file</h3>
             <div id="modalText"></div>
         </div>
     </div>
 
     <footer class="footer-copyright">
-        <p>© 2026 <span>Abdul Muttalib</span>. All Rights Reserved. Designed with ❤️</p>
+        <p>© 2026 <span>Abdul Muttalib</span>. All rights reserved. Designed with ❤️</p>
     </footer>
 
     <a href="#home" id="scroll-top">↑</a>
@@ -319,8 +321,10 @@
         const cursor = document.getElementById("custom-cursor");
         const cursorBlur = document.getElementById("custom-cursor-blur");
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + "px"; cursor.style.top = e.clientY + "px";
-            cursorBlur.style.left = e.clientX + "px"; cursorBlur.style.top = e.clientY + "px";
+            if(window.innerWidth > 768) {
+                cursor.style.left = e.clientX + "px"; cursor.style.top = e.clientY + "px";
+                cursorBlur.style.left = e.clientX + "px"; cursorBlur.style.top = e.clientY + "px";
+            }
         });
 
         // Preloader Logic
@@ -329,12 +333,17 @@
             setTimeout(() => {
                 preloader.style.opacity = '0';
                 preloader.style.visibility = 'hidden';
-            }, 1200); // 1.2 seconds of glorious 'AM' glowing
+            }, 1200); 
+            
+            // Trigger first reveal early
+            setTimeout(() => {
+                document.querySelector('header .content-box').classList.add('active');
+            }, 1500);
         });
 
-        // Typing Animation
+        // Typing Animation (Sentence Case logic applied)
         const typedTextSpan = document.querySelector(".typed-text");
-        const textArray = ["BCA Student", "Web Developer", "Software Enthusiast", "Pro Gamer"];
+        const textArray = ["BCA student", "web developer", "software enthusiast", "pro gamer"];
         let textArrayIndex = 0, charIndex = 0;
         function type() {
             if (charIndex < textArray[textArrayIndex].length) {
@@ -354,12 +363,12 @@
         const reveals = document.querySelectorAll(".reveal");
         const scrollTop = document.getElementById("scroll-top");
         window.addEventListener('scroll', () => {
-            reveals.forEach(r => { if(r.getBoundingClientRect().top < window.innerHeight - 120) r.classList.add('active'); });
-            if(window.scrollY > 500) scrollTop.classList.add('visible'); else scrollTop.classList.remove('visible');
+            reveals.forEach(r => { if(r.getBoundingClientRect().top < window.innerHeight - 80) r.classList.add('active'); });
+            if(window.scrollY > 400) scrollTop.classList.add('visible'); else scrollTop.classList.remove('visible');
             
             // Staggered Skills Reveal
             const skills = document.querySelectorAll(".skill-tag");
-            skills.forEach((s, i) => { if(s.getBoundingClientRect().top < window.innerHeight - 50) { setTimeout(() => s.classList.add('show'), i * 80); } });
+            skills.forEach((s, i) => { if(s.getBoundingClientRect().top < window.innerHeight - 30) { setTimeout(() => s.classList.add('show'), i * 60); } });
         });
 
         // Modal Logic
